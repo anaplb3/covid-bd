@@ -14,41 +14,35 @@ connection.commit()
 command = """
     CREATE TABLE cases(
         id integer PRIMARY KEY,
-        case_in_country INTEGER,
-        reporting_date TEXT,
-        Column1 TEXT,
-        summary TEXT,
-        location TEXT,
-        country TEXT,
-        gender TEXT,
-        age TEXT,
-        symptom_onset TEXT,
-        if_onset_approximated TEXT,
-        hosp_visit_date TEXT,
-        exposure_start TEXT,
-        exposure_end TEXT,
-        visiting_Wuhan BOOLEAN,
-        from_wuhan BOOLEAN,
-        death INTEGER,
-        recovered TEXT,
-        symptom TEXT, 
-        source TEXT,
-        link TEXT,
-        _1 TEXT,
-        _2 TEXT,
-        _3 TEXT,
-        _4 TEXT,
-        _5 TEXT,
-        _6 TEXT
+        case_in_country VARCHAR,
+        reporting_date VARCHAR,
+        Column1 VARCHAR,
+        summary VARCHAR,
+        location VARCHAR,
+        country VARCHAR,
+        gender VARCHAR,
+        age VARCHAR,
+        symptom_onset VARCHAR,
+        if_onset_approximated VARCHAR,
+        hosp_visit_date VARCHAR,
+        exposure_start VARCHAR,
+        exposure_end VARCHAR,
+        visiting_Wuhan VARCHAR,
+        from_wuhan VARCHAR,
+        death VARCHAR,
+        recovered VARCHAR,
+        symptom VARCHAR, 
+        source VARCHAR,
+        link VARCHAR
     )
 """
 
 cursor.execute(command)
 connection.commit()
 
-with open('csv\COVID19_line_list_data1.csv', 'r', encoding='utf-8') as f:
+with open('csv\COVID19_line_list_data.tsv', 'r', encoding='utf-8') as f:
     print(next(f))
-    cursor.copy_from(f, 'cases', sep=',')
+    cursor.copy_from(f, 'cases')
 
 connection.commit()
 
